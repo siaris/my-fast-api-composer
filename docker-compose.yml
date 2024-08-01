@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  api:
+    build: .
+    container_name: fastapi-application
+    working_dir: /code/app
+    environment:
+      PORT: 8000
+    ports:
+      - '8000:8000'
+    restart: on-failure
+    volumes:
+      - ./app:/code/app

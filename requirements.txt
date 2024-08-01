@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+mysql.connector
+selenium
+pandas
+requests
