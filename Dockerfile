@@ -9,6 +9,9 @@ RUN apt-get update && apt-get install -y \
     gnupg \
     && rm -rf /var/lib/apt/lists/*
 
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
 RUN curl -sSL https://dl.google.com/linux/linux_signing_key.pub | apt-key add - \
     && echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list
 
@@ -20,9 +23,6 @@ RUN unzip /tmp/chromedriver-linux64.zip chromedriver-linux64/chromedriver -d /us
     && mv /usr/local/bin/chromedriver-linux64/chromedriver /usr/local/bin/
 RUN chmod +x /usr/local/bin/chromedriver \
     && rm /tmp/chromedriver-linux64.zip
-
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
 
 COPY ./app .
 
